@@ -12,7 +12,7 @@ func TestStringObscure(t *testing.T) {
 
 	// define rules
 	var rules []veil.Rule
-	rules = append(rules, veil.NewRule("phone", "[0-9]+", veil.ActionObscureFunc))
+	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionObscureFunc))
 
 	// create new veil instance
 	v, _ := veil.NewVeil(rules)
@@ -31,7 +31,7 @@ func TestStringMask(t *testing.T) {
 
 	// define rules
 	var rules []veil.Rule
-	rules = append(rules, veil.NewRule("phone", "[0-9]+", veil.ActionMaskFunc))
+	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionMaskFunc))
 
 	// create new veil instance
 	v, _ := veil.NewVeil(rules)

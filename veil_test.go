@@ -12,13 +12,13 @@ func TestNewVeilWithDuplicateRules(t *testing.T) {
 
 	// define rules
 	var rules []veil.Rule
-	rules = append(rules, veil.NewRule("phone", "[0-9]+", veil.ActionObscureFunc))
-	rules = append(rules, veil.NewRule("email", "[0-9]+", veil.ActionMaskFunc))
+	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionObscureFunc))
+	rules = append(rules, veil.NewRule("email", veil.PatternNumber, veil.ActionMaskFunc))
 	rules = append(rules, veil.NewRule("address", "[a-z]+", veil.ActionObscureFunc))
 
 	_, err := veil.NewVeil(rules)
 
-	need := fmt.Errorf("veil: there are more than one occurrence of the '%s' rule", "[0-9]+")
+	need := fmt.Errorf("veil: there are more than one occurrence of the '%s' rule", veil.PatternNumber)
 	if err.Error() != need.Error() {
 		t.Errorf(`Need: "%s", got: "%s"`, need, err)
 	}
@@ -29,8 +29,8 @@ func TestProcess(t *testing.T) {
 
 	// define rules
 	var rules []veil.Rule
-	rules = append(rules, veil.NewRule("phone", "[0-9]+", veil.ActionMaskFunc))
-	rules = append(rules, veil.NewRule("email", "[0-9]+", veil.ActionObscureFunc))
+	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionMaskFunc))
+	rules = append(rules, veil.NewRule("email", veil.PatternEmail, veil.ActionObscureFunc))
 
 	// create new veil instance
 	v, _ := veil.NewVeil(rules)
