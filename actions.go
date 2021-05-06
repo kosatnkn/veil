@@ -1,9 +1,7 @@
 package veil
 
-type action string
+type ActionFn func(in string) string
 
-const (
-	ActionRemove  action = "remove"
-	ActionObscure action = "obscure"
-	ActionMask    action = "mask"
-)
+var ActionObscureFunc = func(in string) string {
+	return "####"
+}
