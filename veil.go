@@ -23,7 +23,9 @@ func NewVeil(rules []Rule) (Veil, error) {
 }
 
 // Process returns a processed set of inputs against the rule set.
-func (v *Veil) Process(inputs ...interface{}) (outputs []interface{}, err error) {
+func (v *Veil) Process(inputs ...interface{}) ([]interface{}, error) {
+
+	var outputs []interface{}
 
 	for _, input := range inputs {
 		s, err := v.ProcessString(fmt.Sprintf("%+v", input))
@@ -34,7 +36,7 @@ func (v *Veil) Process(inputs ...interface{}) (outputs []interface{}, err error)
 		outputs = append(outputs, s)
 	}
 
-	return
+	return outputs, nil
 }
 
 // ProcessString processes the given string against the rule set.
