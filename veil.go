@@ -28,6 +28,7 @@ func (v *Veil) Process(inputs ...interface{}) ([]interface{}, error) {
 	var outputs []interface{}
 
 	for _, input := range inputs {
+
 		s, err := v.ProcessString(fmt.Sprintf("%+v", input))
 		if err != nil {
 			return nil, err
@@ -48,3 +49,8 @@ func (v *Veil) ProcessString(input string) (string, error) {
 
 	return input, nil
 }
+
+// // ProcessStruct processes the given struct against the rule set.
+// func (v *Veil) ProcessStruct(input struct{}) (struct{}, error) {
+
+// }
