@@ -7,6 +7,7 @@ import (
 	"github.com/kosatnkn/veil"
 )
 
+// TestNewVeilWithDuplicateRules checks for duplicate rule validation when creating a new instance of veil.
 func TestNewVeilWithDuplicateRules(t *testing.T) {
 
 	// define rules
@@ -23,6 +24,7 @@ func TestNewVeilWithDuplicateRules(t *testing.T) {
 	}
 }
 
+// TestObscure tests for the data obscure action performed against given data.
 func TestObscure(t *testing.T) {
 
 	// define rules
@@ -41,6 +43,7 @@ func TestObscure(t *testing.T) {
 	fmt.Printf("Output: %+v\n", o)
 }
 
+// TestMask tests for the data mask action performed against given data.
 func TestMask(t *testing.T) {
 
 	// define rules
@@ -59,6 +62,7 @@ func TestMask(t *testing.T) {
 	fmt.Printf("Output: %+v\n", o)
 }
 
+// TestAll tests for all possibilities of the veil.Process functionality.
 func TestAll(t *testing.T) {
 
 	// define rules

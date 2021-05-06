@@ -7,11 +7,11 @@ type Rule struct {
 	name      string
 	pattern   string
 	patternRx *regexp.Regexp
-	action    ActionFn
+	action    ActionFunc
 }
 
 // NewRule creates a new de-identification rule.
-func NewRule(name, pattern string, fn ActionFn) Rule {
+func NewRule(name, pattern string, fn ActionFunc) Rule {
 	return Rule{
 		name:      name,
 		pattern:   pattern,
