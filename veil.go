@@ -10,16 +10,23 @@ type Veil struct {
 }
 
 // NewVeil creates a new veil instance.
-func NewVeil(rules []Rule) Veil {
+func NewVeil(rules []Rule) (Veil, error) {
+
+	err := validate(rules)
+	if err != nil {
+		return Veil{}, err
+	}
+
 	return Veil{
 		rules: rules,
-	}
+	}, nil
 }
 
 // Process returns a processed set of inputs against the rule set.
 func (v *Veil) Process(inputs ...interface{}) (outputs []interface{}, err error) {
+
 	for _, input := range inputs {
-		s, err := v.processString(fmt.Sprintf("%+v", input))
+		s, err := v.ProcessString(fmt.Sprintf("%+v", input))
 		if err != nil {
 			return nil, err
 		}
@@ -30,10 +37,11 @@ func (v *Veil) Process(inputs ...interface{}) (outputs []interface{}, err error)
 	return
 }
 
-// processString processes the given string against the attached rule set.
-func (v *Veil) processString(input string) (string, error) {
+// ProcessString processes the given string against the rule set.
+func (v *Veil) ProcessString(input string) (string, error) {
+
 	for _, rule := range v.rules {
-		input = rule.Pattern().ReplaceAllStringFunc(input, rule.ActionFunc())
+		input = rule.patternRx.ReplaceAllStringFunc(input, rule.action)
 	}
 
 	return input, nil

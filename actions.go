@@ -20,6 +20,7 @@ var ActionObscureFunc = func(in string) string {
 // | 1234 			| ****234	|
 // | somelongstring | ****ing	|
 var ActionMaskFunc = func(in string) string {
+
 	mask := "****"
 
 	if len(in) <= 3 {
