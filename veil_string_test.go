@@ -22,7 +22,7 @@ func TestStringObscure(t *testing.T) {
 	fmt.Printf("Data: %+v\n", d)
 
 	// process
-	o, _ := v.ProcessString(fmt.Sprintf("%s", d))
+	o, _ := v.Process(fmt.Sprintf("%v", d))
 	fmt.Printf("Output: %+v\n", o)
 }
 
@@ -41,6 +41,6 @@ func TestStringMask(t *testing.T) {
 	fmt.Printf("Data: %+v\n", d)
 
 	// process
-	o, _ := v.ProcessString(fmt.Sprintf("%s", d))
+	o, _ := v.Process(fmt.Sprintf("%v", d))
 	fmt.Printf("Output: %+v\n", o)
 }

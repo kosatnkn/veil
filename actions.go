@@ -23,9 +23,10 @@ var ActionMaskFunc = func(in string) string {
 
 	mask := "****"
 
-	if len(in) <= 3 {
+	l := len(in)
+	if l <= 3 {
 		return mask + in
 	}
 
-	return mask + string(in[len(in)-3])
+	return mask + string(in[l-3:])
 }

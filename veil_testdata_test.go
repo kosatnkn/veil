@@ -22,3 +22,37 @@ func getInputData() []interface{} {
 
 	return data
 }
+
+func getStructData() []interface{} {
+
+	var data []interface{}
+
+	type User struct {
+		User  string
+		Pwd   string `veil:"obscure"`
+		group float32
+	}
+
+	type Data struct {
+		Name  string
+		Phone string
+		ph    int
+		User  User
+	}
+
+	// input data
+	d := Data{
+		Name:  "Test",
+		Phone: "123",
+		ph:    123,
+		User: User{
+			User:  "User",
+			Pwd:   "Password",
+			group: 1.01,
+		},
+	}
+
+	data = append(data, d)
+
+	return data
+}
