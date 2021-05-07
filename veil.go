@@ -71,7 +71,8 @@ func (v *Veil) processComposite(input interface{}) (interface{}, error) {
 		return v.processStruct(input)
 	case reflect.Map:
 		return v.processMap(input)
-	case reflect.Array, reflect.Slice:
+	case reflect.Array,
+		reflect.Slice:
 		return v.processSlice(input)
 	default:
 		return v.process(fmt.Sprintf("%+v", input))
@@ -146,20 +147,21 @@ func (v *Veil) processMap(input interface{}) (interface{}, error) {
 	return m, nil
 }
 
-// processSlice process the given variadic input as a slice.
+// processSlice process the given slice.
 func (v *Veil) processSlice(input interface{}) (interface{}, error) {
 
 	var s []interface{}
 
-	// for _, item := range input {
+	val := reflect.ValueOf(input)
 
-	// 	p, err := v.process(item)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
+	for i := 0; i < val.Len(); i++ {
+		out, err := v.process(val.Index(i).Interface())
+		if err != nil {
+			return nil, err
+		}
 
-	// 	s = append(s, p)
-	// }
+		s = append(s, out)
+	}
 
 	return s, nil
 }
