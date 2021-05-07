@@ -70,17 +70,15 @@ func (v *Veil) processComposite(input interface{}) (interface{}, error) {
 	case reflect.Struct:
 		return v.processStruct(input)
 	case reflect.Map:
-		fmt.Println("Type: Map")
-		return nil, nil
+		return v.processMap(input)
 	case reflect.Array, reflect.Slice:
-		fmt.Println("Type: Array, Slice")
-		return nil, nil
+		return v.processSlice(input)
 	default:
 		return v.process(fmt.Sprintf("%+v", input))
 	}
 }
 
-// processStruct processes a struct.
+// processStruct process the given struct.
 //
 // Structs will be converted to maps for processing convenience.
 // Precedence is given to veil tags of struct fields if there are any.
@@ -123,6 +121,45 @@ func (v *Veil) processStruct(input interface{}) (interface{}, error) {
 			s[fTyp.Name] = out
 		}
 	}
+
+	return s, nil
+}
+
+// processMap process the given map.
+func (v *Veil) processMap(input interface{}) (interface{}, error) {
+
+	m := make(map[interface{}]interface{})
+
+	iter := reflect.ValueOf(input).MapRange()
+	for iter.Next() {
+		key := iter.Key()
+		val := iter.Value()
+
+		out, err := v.process(val.Interface())
+		if err != nil {
+			return nil, err
+		}
+
+		m[key.Interface()] = out
+	}
+
+	return m, nil
+}
+
+// processSlice process the given variadic input as a slice.
+func (v *Veil) processSlice(input interface{}) (interface{}, error) {
+
+	var s []interface{}
+
+	// for _, item := range input {
+
+	// 	p, err := v.process(item)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+
+	// 	s = append(s, p)
+	// }
 
 	return s, nil
 }
