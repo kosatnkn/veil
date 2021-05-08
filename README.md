@@ -86,3 +86,26 @@ Following is the list of **in**, **out** types.
 | slice     | []interface{}                 |
 
 Any other data type will be first converted in to a string using `fmt.Sprintf("%+v", input)` and then processed.
+
+## Using Struct Tags
+
+`veil` supports struct tags. You can use them to define how a field is de-identified.
+```go
+type User struct {
+    User  string
+    Pwd   string `veil:"obscure"`
+    group float32
+}
+```
+
+Following are the tag options that are available.
+- `obscure` to obscure the field value by using the **default obscure function**
+- `mask` to mask the field value by using the **default masking function**
+- `hide` to remove the field from the returned data structure
+
+## Execution Precedence
+
+`veil` will use the following precedence when de-identifying data.
+- If a `stringer` interface is implemented for the data type it will be used
+- If the type is a struct and `veil` struct tags are used use the struct tag to process the field
+- Use the ruleset passed when creating the `veil` instance
