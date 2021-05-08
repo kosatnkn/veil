@@ -1,6 +1,6 @@
 package veil
 
-// ActionFn represents function to run against the rule.
+// ActionFunc represents function to run against the rule.
 type ActionFunc func(in string) string
 
 // ActionObscureFunc is the default obscure function.

@@ -14,7 +14,6 @@ func TestNumberRegex(t *testing.T) {
 		in   interface{}
 		out  string
 	}{
-		// non existant
 		{"int as string", "123456", "***"},
 		{"neg int as string", "-123456", "***"},
 		{"int in string start ", "123456abcdef", "***abcdef"},
