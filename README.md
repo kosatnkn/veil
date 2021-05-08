@@ -1,9 +1,12 @@
 # Veil
 
+[![CI](https://github.com/kosatnkn/veil/actions/workflows/ci.yml/badge.svg)](https://github.com/kosatnkn/veil/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/kosatnkn/veil/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kosatnkn/veil/actions/workflows/codeql-analysis.yml)
+[![Coverage Status](https://coveralls.io/repos/github/kosatnkn/veil/badge.svg)](https://coveralls.io/github/kosatnkn/veil)
 ![Open Issues](https://img.shields.io/github/issues/kosatnkn/veil)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kosatnkn/veil)](https://goreportcard.com/report/github.com/kosatnkn/veil)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/kosatnkn/veil)
 [![Go Reference](https://pkg.go.dev/badge/github.com/kosatnkn/veil.svg)](https://pkg.go.dev/github.com/kosatnkn/veil)
-[![Go Report Card](https://goreportcard.com/badge/github.com/kosatnkn/veil)](https://goreportcard.com/report/github.com/kosatnkn/veil)
 
 A data de-identification library written in Go.
 
