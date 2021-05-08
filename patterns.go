@@ -6,7 +6,7 @@ package veil
 //  - https://digitalfortress.tech/tricks/top-15-commonly-used-regex/
 const (
 	// PatternNumber will match any number.
-	PatternNumber string = "[0-9]+"
+	PatternNumber string = `[-]?[0-9]+[,.]?[0-9]*([\/][0-9]+[,.]?[0-9]*)*`
 
 	// PatternEmail will match any email address.
 	PatternEmail string = "email"
