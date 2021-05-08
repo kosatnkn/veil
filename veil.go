@@ -29,10 +29,12 @@ func (v *Veil) Process(inputs ...interface{}) ([]interface{}, error) {
 	var outputs []interface{}
 
 	for _, input := range inputs {
+
 		p, err := v.process(input)
 		if err != nil {
 			return nil, err
 		}
+
 		outputs = append(outputs, p)
 	}
 
@@ -53,16 +55,6 @@ func (v *Veil) process(input interface{}) (interface{}, error) {
 	}
 }
 
-// ProcessString processes the given string against the rule set.
-func (v *Veil) processString(input string) (string, error) {
-
-	for _, rule := range v.rules {
-		input = rule.patternRx.ReplaceAllStringFunc(input, rule.action)
-	}
-
-	return input, nil
-}
-
 // processComposite processes composite types such as structs, maps and slices.
 func (v *Veil) processComposite(input interface{}) (interface{}, error) {
 
@@ -77,6 +69,17 @@ func (v *Veil) processComposite(input interface{}) (interface{}, error) {
 	default:
 		return v.process(fmt.Sprintf("%+v", input))
 	}
+}
+
+// ProcessString processes the given string against the rule set.
+// TODO: need to work on the pattern overlapping issue
+func (v *Veil) processString(input string) (string, error) {
+
+	for _, rule := range v.rules {
+		input = rule.patternRx.ReplaceAllStringFunc(input, rule.action)
+	}
+
+	return input, nil
 }
 
 // processStruct process the given struct.

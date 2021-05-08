@@ -1,2 +1,3 @@
-# veil
-Data de-identification library written in Go
+# Veil
+
+A data de-identification library written in Go.
