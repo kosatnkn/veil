@@ -13,6 +13,11 @@ A data de-identification library written in Go.
 Veil can be used to obscure sensitive data in data structures when they are being persisted. This is especially useful
 when writing to log files.
 
+## Add to Project
+```bash
+go get github.com/kosatnkn/veil
+```
+
 ## Usage
 
 In order to use `veil` you need to create a veil instance. To create a new `veil` instance first you need to create
@@ -46,12 +51,12 @@ package main
 
 func main() {
     // define rules
-	var rules []veil.Rule
-	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionObscureFunc))
-	rules = append(rules, veil.NewRule("email", veil.PatternEmail, veil.ActionMaskFunc))
+    var rules []veil.Rule
+    rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionObscureFunc))
+    rules = append(rules, veil.NewRule("email", veil.PatternEmail, veil.ActionMaskFunc))
 
-	// create new veil instance
-	v, err := veil.NewVeil(rules)
+    // create new veil instance
+    v, err := veil.NewVeil(rules)
     if err != nil {
         panic(err)
     }
@@ -59,11 +64,11 @@ func main() {
     // process data
     o, err := v.Process("This text contains a phone number 0712345678",
         "This text contains an email address test@example.com")
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 
-	fmt.Printf("%#v", o)
+    fmt.Printf("%#v", o)
 }
 ```
 
