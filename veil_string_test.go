@@ -44,3 +44,22 @@ func TestStringMask(t *testing.T) {
 	o, _ := v.Process(d...)
 	fmt.Printf("Output: %#v\n", o)
 }
+
+// TestStringer tests for the use of the stringer interface if it is implemented.
+func TestStringer(t *testing.T) {
+
+	// define rules
+	var rules []veil.Rule
+	rules = append(rules, veil.NewRule("number", veil.PatternNumber, veil.ActionMaskFunc))
+
+	// create new veil instance
+	v, _ := veil.NewVeil(rules)
+
+	// input data
+	d := getInputDataStringer()
+	fmt.Printf("Data: %#v\n", d)
+
+	// process
+	o, _ := v.Process(d...)
+	fmt.Printf("Output: %#v\n", o)
+}

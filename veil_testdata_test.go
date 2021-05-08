@@ -56,3 +56,20 @@ func getStructData() []interface{} {
 
 	return data
 }
+
+type StringerTester string
+
+func (s StringerTester) String() string {
+	return "Using stringer for string 123"
+}
+
+func getInputDataStringer() []interface{} {
+
+	var data []interface{}
+
+	var d StringerTester = "hello"
+
+	data = append(data, d)
+
+	return data
+}

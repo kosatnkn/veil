@@ -44,6 +44,12 @@ func (v *Veil) Process(inputs ...interface{}) ([]interface{}, error) {
 // process processes the given type.
 func (v *Veil) process(input interface{}) (interface{}, error) {
 
+	// check for a stringer implementation
+	s, ok := input.(fmt.Stringer)
+	if ok {
+		return s.String(), nil
+	}
+
 	switch input.(type) {
 	case string,
 		int, int8, int16, int32, int64,
