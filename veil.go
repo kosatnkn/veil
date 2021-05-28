@@ -23,6 +23,11 @@ func NewVeil(rules []Rule) (Veil, error) {
 	}, nil
 }
 
+// Rules returns the set of rules attached to the veil instance.
+func (v *Veil) Rules() []Rule {
+	return v.rules
+}
+
 // Process returns a processed set of inputs against the rule set.
 func (v *Veil) Process(inputs ...interface{}) ([]interface{}, error) {
 
