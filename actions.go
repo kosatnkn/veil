@@ -12,15 +12,14 @@ var ActionObscureFunc = func(in string) string {
 // ActionMaskFunc is the default masking function.
 // It masks the input string as follows.
 //
-// 	| Input				| Output	|
-// 	| -----------------	| --------- |
-// 	| 1					| ****1		|
-// 	| 12				| ****23	|
-// 	| 123  				| ****123	|
-// 	| 1234 				| ****234	|
-// 	| somelongstring 	| ****ing	|
+//	| Input				    | Output	|
+//	| ---------------	| ------- |
+//	| 1					      | ****1		|
+//	| 12				      | ****23	|
+//	| 123  				    | ****123	|
+//	| 1234 				    | ****234	|
+//	| somelongstring 	| ****ing	|
 var ActionMaskFunc = func(in string) string {
-
 	mask := "****"
 
 	l := len(in)

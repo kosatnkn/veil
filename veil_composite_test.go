@@ -8,7 +8,6 @@ import (
 )
 
 func TestStruct(t *testing.T) {
-
 	// define rules
 	var rules []veil.Rule
 	rules = append(rules, veil.NewRule("phone", veil.PatternNumber, veil.ActionObscureFunc))
